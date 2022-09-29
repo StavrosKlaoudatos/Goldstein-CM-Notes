@@ -1,0 +1,389 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{subfiles}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{mathptmx}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{graphics}
+\usetikzlibrary{positioning}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{imakeidx}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{braket}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{lmodern}
+\usepackage{tcolorbox}
+\pgfplotsset{compat=1.17}
+\fancypagestyle{mypagestyle}{
+    \pagestyle{fancy}
+    \pagestyle{myheadings}
+}
+
+
+\newcommand{\bb}[1]{\begin{tcolorbox}
+  \textbf{#1}
+\end{tcolorbox}}
+\newtheorem{definition}{Definition}
+\newcommand{\rb}[1]{\begin{tcolorbox}[colframe=red!50!white]
+#1
+\end{tcolorbox}}
+
+\newcommand{\Bb}[1]{\begin{tcolorbox}[colframe=blue!50!white]
+{#1}
+\end{tcolorbox}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\dd}{\dagger}
+
+\newcommand{\A}{a^\dagger}
+
+\renewcommand{\d}[1]{\begin{definition} #1\end{definition}}
+
+
+\title{My Template}
+\author{Stavros Klaoudatos}
+\date{June 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Survey of Elementary Principles}
+
+\subsection{Mechanics of a Particles}
+
+Let \textbf{r} be the radius vector of a particle given some origin, and \textbf{v} its vector velocity.
+\\
+\begin{equation*}
+    \textbf{v} = \frac{d\textbf{r}}{dt}
+\end{equation*}
+
+
+The linear momentum \textbf{p} of the particle is defined as the product of the particle's mass and velocity:
+\\
+\begin{equation*}
+    \textbf{p} = m\textbf{v}
+\end{equation*}
+
+
+Because the particle interacts with external objects and fields, it experiences forces of various types. The \textbf{vector sum} of all the forces exerted on the particles is the total force \textbf{F}.
+
+The mechanics of the particles is contained in Newton's second law of motion, which states there exist frames of reference in which the motion of the particle is described by the differential equation 
+\begin{equation*}
+    \textbf{F} = \frac{d \textbf{p}}{dt} = \dot{p}
+\end{equation*}
+or simply
+\\
+\begin{equation}
+    \textbf{F} = \frac{d}{dt}(mv) = m\textbf{a}
+\end{equation}
+where 
+\begin{equation*}
+    \textbf{a} = \frac{d^2 \textbf{r}}{dt}
+\end{equation*}
+
+The equation of motion is thus a \textbf{differential equation of second order, \textit{assuming that F does not depend on higher order derivatives.}}
+
+A reference frame in which eq.1 holds, is called an inertial reference frame, or the system itself is called a \textit{Galilean System}. This notion is an idealization in the real world.
+
+
+Many of the important conclusions of mechanics can be expressed in the form of \textbf{conservation theorems}, which indicate under what conditions various mechanical quantities are constant through time.
+
+\bb{\textbf{Conservation Theorem for the Linear Momentum of a Particle}\\\newline If the total force \textbf{F} is zero, the the time derivative of momentum is 0 and the momentum \textbf{p} is conserved.}
+
+The Angular Momentum of a the particle about a point O is denoted by \textbf{L}, and is defined as
+
+\begin{equation*}
+    \textbf{L} =\textbf{r}\times \textbf{p}
+\end{equation*}
+where \textbf{r} is the radius vector from O to the particle. Note that the operation is \textbf{not commutative}.
+
+We define the \textbf{moment of force}, or \textbf{torque} about O as
+\begin{equation*}
+    \textbf{N} = \textbf{r} \times \textbf{F}
+\end{equation*}
+
+The equation analogous to F=ma for \textbf{N} is obtained by forming the \textit{cross product of r with equation 1}
+\begin{equation}
+    \textbf{r} \times \textbf{F} = \textbf{N} = \textbf{r} \times \frac{d}{dt}(mv)
+\end{equation}
+
+
+or 
+
+\begin{equation*}
+    \frac{d}{dt}(\textbf{r} \times mv) = \textbf{v} \times m\textbf{v} + \textbf{r}\times \frac{d}{dt}(mv)
+\end{equation*}
+The right term obviously vanishes, and thus we get:
+
+\begin{equation}
+    \textbf{N} = \frac{d}{dt}(\textbf{r}\times m\textbf{v}) = \frac{d\textbf{L}}{dt}
+\end{equation}
+
+
+\bb{\textbf{Conservation Theorem for the Angular Momentum of a Particle}\\\newline If the total torque, N, is zero, then the time derivative of L is 0 implying that the angular momentum is conserved.}
+
+Let's now consider the work done by the external force \textbf{F} upon the particle in going from point 1 to point 2. By definition,
+
+\begin{equation*}
+    W_{12} = \int_{1}^{2} \textbf{F} \cdot d\textbf{s}
+\end{equation*}
+
+\newpage
+For constant mass, it follows that
+
+\begin{equation*}
+    W_{12} = \frac{m}{2}(v_2^2 - v_1^2)
+\end{equation*}
+or simply:
+
+\begin{equation*}
+    W_{12} = T_2 - T_1
+\end{equation*}
+
+If the force field is such that the work is the same for any physically possibly path between the two points, the field is called \textbf{\textit{conservative}}.
+
+
+\begin{equation*}
+    \oint\textbf{F} \cdot d\textbf{s} = 0
+\end{equation*}
+
+Physically, a system cannot be conservative if dissipative forces are present.
+\\
+
+From a well known theorem of vector analysis, the path is such that \textbf{F} is the gradient of some scalar function of position.
+
+\begin{equation*}
+    F = -\nabla V(\textbf{r})
+\end{equation*}
+
+Where V is called the \textit{potential} or \textit{potential energy}.
+
+It follows that:
+\\
+\begin{equation*}
+    F_s = -\frac{\partial V}{\partial s}
+\end{equation*}
+
+and thus:
+\\
+\begin{equation*}
+    W_{12} = V_1-V_2
+\end{equation*}
+
+Combining our definitions of the work, we get that:
+\\
+\begin{equation}
+    T_1 +V_1 = T_2 +V_2
+\end{equation}
+
+which is the \textbf{Conservation of Energy}.
+
+
+
+\bb{\textbf{Conservation Theorem for the Energy Particle}\\\newline If the forces acting on a particle are conservative, then the total energy of the particle, T+V is conservative.}
+
+The force applied to a particle may in some circumstance be given by the \textbf{gradient of a scalar function that depends explicitly on both position and time}.
+However, the work done on the particle when it travels a distance ds, 
+
+\begin{equation}
+\textbf{F} \cdot d\textbf{s} = -\frac{\partial V}{\partial s} ds
+\end{equation}
+is then no longer the total change in -V during the displacement, since V also changes explicitly with time as the particle moves.
+
+
+\subsection{Mechanics of a System of Particles}
+
+To generalize the previous ideas, we have to distinguish between external and internal forces. Newton's second law becomes :
+\\
+\begin{equation*}
+    \sum\limits_j \textbf{F}_{ji} + \textbf{F}^{e}_i = \dot{\textbf{p}}
+\end{equation*}
+
+where $\textbf{F}^{(e)}_i$ stands for external force, and $\textbf{F}_{ji}$ is the internal force on the ith particles due to the jth particle. \\
+
+Summed over all particles, we get 
+\\
+\begin{equation*}
+    \frac{d^2}{dt^2}\sum\limits_i m_i\textbf{r}_i = \sum\limits_{i} \textbf{F}^{(e)}_i + \sum\limits_i \sum\limits_{j} \textbf{F}_{ij}
+\end{equation*}
+
+The second term obviously vanishes as it is a simple example of the the Action-Reaction law. We define a vector \textbf{R} as the average of the radii vectors of the particles, weighted in proportion to their mass:
+
+\begin{equation*}
+    \textbf{R} = \frac{\sum m_i\textbf{r}_i}{\sum m_i} = \frac{\sum m_i\textbf{r}_i}{M}
+\end{equation*}
+\textbf{R} is the center of mass, or the center of gravity of the system. Using this definition we get:
+
+\begin{equation*}
+    M \frac{d^2 \textbf{R}}{dt^2} = \sum\limits_i\textbf{F}^{(e)}_i = \textbf{F}^{(e)}   
+\end{equation*}
+
+This states that the center of mass moves as if the total external force were acting on the entire mass of the system concentrated at the center of mass. Purely internal forces have therefore no effect on the motion of the center of mass.
+\\
+The total linear momentum of the system follows to be:\\
+
+\begin{equation*}
+    \textbf{P} = M \frac{d \textbf{R}}{dt}
+\end{equation*}
+
+Now let's take a look at the angular momentum of the system.
+\\
+It is given by forming the cross product of position and momentum summing over them.\\
+
+\begin{equation*}
+    \sum\limits_i (\textbf{r}_i \times \textbf{p}_i) = \sum \frac{d}{dt}(\textbf{r}_i \times \textbf{p}_i) = \dot{\textbf{L}} = \sum\limits_i\textbf{r}_i\times \textbf{F}^{(e)}_i + \sum\limits_i\sum\limits_j (\textbf{r}_i \times \textbf{F}_{ji})
+\end{equation*}
+
+The right-most term can be considered a sum of the pairs of the form
+
+\begin{equation*}
+    \textbf{r}_i \times \textbf{F}_{ji} + \textbf{r}_j \times \textbf{F}_{ij} = (\textbf{r}_i - \textbf{r}_j) \times \textbf{F}_{ji}
+\end{equation*}
+
+using the equality of action-reaction. $\textbf{r}_i - \textbf{r}_j$ is essentially the vector from j to i, which I will denote as $\textbf{r}_{ij}$, thus we get:
+
+\begin{equation*}
+    \textbf{r}_{ij} \times \textbf{F}_{ji}
+\end{equation*}
+If the internal forces between two particles, in addition to being equal and opposite, also line along the line joining the particles, a condition known as the strong law of action and reaction, then ass of these cross products vanish. Under this assumption, the pairs are all zero, and thus we get that:
+\\
+\begin{equation*}
+    \frac{d}{dt}\textbf{L} = \textbf{N}^{(e)}
+\end{equation*}
+
+The time derivative of the total angular momentum is thus equal to the moment of the external force about the given point. We now get the conservation theorem.
+\\
+\bb{Conservation Theorem for Total Angular Momentum\\\newline L is constant in time if the applied external torque is zero.}
+
+The conservation of angular momentum requires the strong action-reaction law, that \textbf{internal forces in addition are central}. Note that this is also a vector theorem, meaning $\textbf{L}_z$, can be conserved without requiring $\textbf{N}_x \ or\ \textbf{N}_y$ to be zero.
+
+
+The total linear momentum of the system is the same as if the entire mass were concentrated at the center of the mass and moving with it. The analogue for angular momentum is a bit more complicated. With the origin being O, the total angular momentum of the system is:\\
+
+\begin{equation}
+    \textbf{L} = \sum\limits_i \textbf{r}_i \times \textbf{p}_i
+\end{equation}
+
+
+
+Let $\textbf{R}$ be the radius vector from O to the center of mass, and let $\textbf{r}_i'$ be the radius vector from the center of mass to the ith particle. 
+
+\begin{equation*}
+    \textbf{r}_i = \textbf{r}_i' + \textbf{R}
+\end{equation*}
+
+and 
+
+\begin{equation*}
+    \textbf{v}_i = \textbf{v}_i' + \textbf{v}
+\end{equation*}
+
+where
+
+\begin{equation*}
+    \textbf{v} = \frac{d}{dr}\textbf{R}
+\end{equation*}
+
+is the velocity of the center of mass relative to O, and 
+
+\begin{equation*}
+    \textbf{v}_i' = \frac{d}{dr}\textbf{r}_i'
+\end{equation*}
+
+Now, we can use this definition in terms of the center of mass to write the total angular momentum as:
+\\
+\begin{align*}
+\mathbf{L} &= \sum_i \mathbf{r_i} \times m\mathbf{v}_i\\
+&= \sum_i (\mathbf{R}+\mathbf{r}_i')\times m\left(\frac{d\mathbf{R}}{dt}+\frac{d\mathbf{r}_i'}{dt}\right)\\
+&= \sum_i \mathbf{R}\times m\frac{d\mathbf{R}}{dt} + \sum_i \mathbf{r}_i'\times m\frac{d\mathbf{r}_i'}{dt} + \sum_i m\mathbf{r}_i'\times \frac{d\mathbf{R}}{dt}+ \sum_i \mathbf{R}\times m\frac{d\mathbf{r}_i'}{dt}\\
+&= \sum_i \mathbf{R}\times m\frac{d\mathbf{R}}{dt} + \sum_i \mathbf{r}_i'\times m\frac{d\mathbf{r}_i'}{dt}
+\end{align*}
+
+
+The fourth equality follows because the last two terms are zero, since $\sum_i m \mathbf{r}_i’ = \sum_i m\mathbf{r}_i - (\sum_i m)\mathbf{R} = 0$. Ultimately, this equation shows that the total angular momentum of the system is equal to the angular momentum in the center of mass frame plus the angular momentum if everything was concentrated at the center of mass. Since the choice of a frame is arbitrary, this seems to imply that angular momentum is most naturally understood with respect to the center of mass.
+
+---
+
+Now we consider work. Notice that if we add up all of the changes in kinetic energy for each particle, that is equivalent by the above reasoning to adding up each particles path integral of force. This is how work is defined for a system of particles, as the sum of the work on each particle.
+
+We now show that similarly to angular momentum, the kinetic energy of a system changes quite elegantly as we change our frame of reference:
+
+ 
+
+$$
+\begin{align*}
+T &= \frac{1}{2}\sum_i m_i \mathbf{v}_i \cdot \mathbf{v}_i\\
+&= \frac{1}{2}\sum_i m_i \mathbf{v}_i' \cdot \mathbf{v}_i' + \sum_i m_i \frac{d\mathbf{R}}{dt} \cdot \mathbf{v}_i' + \frac{1}{2}\sum_i m_i \frac{d\mathbf{R}}{dt} \cdot \frac{d\mathbf{R}}{dt}
+\end{align*}
+$$
+
+Just as before, the middle term goes away, because it takes the mass weighted sum of velocities with respect to the frame of reference, which is zero just like the mass weighted sum of the positions wrt the center of mass. 
+
+So, the kinetic energy is equal to the sum of the kinetic energy of the system if it was concentrated at the center of mass with center of mass speed, and the kinetic energy in the frame of reference of the center of mass. 
+
+---
+
+Now consider another possible formulation of the work, as follows:
+
+$$
+W_{12} = \sum_i\int_1^2 \mathbf{F}_i^{(e)}\cdot d\mathbf{s} + \sum_{i, j; \,\, i\neq j}\int_1^2 \mathbf{F}_{ij}\cdot d\mathbf{s}
+$$
+
+Now, imagine that the external forces could be the gradient of some potential function (and therefore form a conservative vector field. In this case, the first term of the sum above is simply the sum of the potentials for each external force, evaluated at system position 2 versus system position 1:
+
+$$
+\sum_i\int_1^2 \mathbf{F}_i^{(e)}\cdot d\mathbf{s}  = \sum_i -\nabla_iV_i\Big\vert_1^2
+$$
+
+There are different gradients on each of the potential functions because they are evaluated at different points, namely at the different particles on which the forces are acting. 
+
+Now, let’s consider the second term. If we say that internal forces are conservative, what we really mean is that the force that one particle i acts on another j (which we assume is equal and opposite to the converse, and that both are central forces) can be expressed as a potential function for $j$ with respect to $i$’s position. Note that usually, conservative force fields requires that the forces don’t change over time. This is easy for relatively constant fields, like a gravitational field, but not possible for the internal forces that characterize a system of simultaneously moving particles.
+
+Imagine for a moment that we hold $i$ constant. Then, the potential function for $j$ is going to have to be such that the gradient at every point is pointing toward $i$, since we have a conservative vector field with central forces. But notice that this implies that every location for $j$ will have the same potential function, since rotating around $i$ is always orthogonal to the gradient of $V_{ij}$ at $j$. By rotating around particles $i$ and $j$, we find that the potential function of $j$ $V_{ij}$ is going to be in terms of $\mathbf{r}_i - \mathbf{r}_j$ no matter where either $i$ or $j$ are (in fact even $|\mathbf{r}_i - \mathbf{r}_j|$, leveraging repeated applications of the force field being conservative, and $V_{ji}$ at $i$ is the same as $-V_{ij}$ at $j$. Let’s define a $V'_{ij}(\mathbf{r}) = -V_{ij}(\mathbf{r} + \mathbf{r}_i) = V_{ji}(\mathbf{r} + \mathbf{r}_j)$, and $\nabla_{ij}$ takes the gradient at the difference between $\mathbf{r}_j - \mathbf{r}_i$. Notice the reason why the central force fact is necessary: without it, $V'_{ij}(\mathbf{r})$ is not constant with time, since if both the $i$th and $j$th particles translate with time, this value will have to change. 
+
+$$
+\begin{align*}
+\sum_{i<j}\int_1^2 \mathbf{F}_{ij}\cdot d\mathbf{s}_i + \mathbf{F}_{ji}\cdot d\mathbf{s}_j &= \sum_{i<j}\int_1^2 \nabla_iV_{ji}\cdot d\mathbf{s}_i + \nabla_jV_{ij}\cdot d\mathbf{s}_j\\
+&= \sum_{i<j}\int_1^2 \nabla_{ij}V'_{ij}\cdot (d\mathbf{s}_i - d\mathbf{s}_j)\\
+&=\sum_{i<j}\int_1^2 \nabla_{ij}V'_{ij}\cdot (d\mathbf{r}_{ij})
+\end{align*}
+$$
+
+The last equality comes from the fact that the differentials of position in $i$, minus $j$, gives how the distance between $\mathbf{r}_i$ and $\mathbf{r}_j$ has changed. This final expression is simply:
+
+$$
+\sum_{i<j} V'_{ij}\Big\vert_1^2
+$$
+
+An intuition: both particles move, to establish a new distance between them. This is, up to translation (which is why the central force condition is necessary), equivalent to one particle moving away from the other. So we count the difference in potential once for every pair of particles. So, this means that as long as internal forces are conservative and central, and external forces are conservative, then the total potential energy of the system can be defined as:
+
+$$
+V = \sum_i V_i(\mathbf{r}_i) + \sum_{i<j} V'_{ij}(\mathbf{r}_{ij})
+$$
+
+In this case, we have that $T+V$ is conserved. Note that this situation is not all that likely, but one natural case for it is when our forces arise from electrostatics or gravity (in which case the forces are all central and conservative). However, the motivation, identifying conserved quantities with some specific physical assumptions, remains clear. 
+
+One might ask when the second term above, namely the potential energy differences arising form the changing distances between particles, might be constant. In fact, it is clear that if the relative distances between all pairs of particles is the same magnitude, these values remain constant over time, and can be disregarded in the conserved energy quantity. Such a body is called rigid - another intuition for the unchanging internal potential energy is that the change in the vector distance between two particles is orthogonal to the distance itself (since the magnitude doesn’t change), and so since the force is parallel with $\mathbf{r}_{ij}$, we have that $\mathbf{F}_{ij} \cdot d\mathbf{r}_{ij}= 0$.
+
+
+
+
+\subsection{Constraints}
+
+
+
+
+
+\end{document}
